@@ -14,7 +14,7 @@ services:
 
   php:
 # 1. Images with vanilla Drupal – wodby/drupal:[DRUPAL_VERSION]-[PHP_VERSION]-[STABILITY_TAG].
-    image: wodby/drupal:8-7.1-3.0.0
+#    image: wodby/drupal:8-7.1-3.0.0
 #    image: wodby/drupal:8-7.0-3.0.0
 #    image: wodby/drupal:7-7.1-3.0.0
 #    image: wodby/drupal:7-7.0-3.0.0
@@ -22,7 +22,7 @@ services:
 #    image: wodby/drupal:6-5.6-3.0.0
 #    image: wodby/drupal:6-5.3-3.0.0
 # 2. Images without Drupal – wodby/drupal-php:[PHP_VERSION]-[STABILITY_TAG].
-#    image: wodby/drupal-php:7.1-3.0.0
+    image: wodby/drupal-php:7.1-3.0.0
 #    image: wodby/drupal-php:7.0-3.0.0
 #    image: wodby/drupal-php:5.6-3.0.0
 #    image: wodby/drupal-php:5.3-3.0.0
@@ -42,7 +42,7 @@ services:
 #      PHP_XDEBUG_TRACE_OUTPUT_DIR: /mnt/files/xdebug/traces
 #      PHP_BLACKFIRE: 1
     volumes:
-      - codebase:/var/www/html
+      - ./:/var/www/html
 ## Options for macOS users (https://docker4drupal.readthedocs.io/en/latest/macos)
 #      - codebase:/var/www/html:cached # User-guided caching
 #      - docker-sync:/var/www/html # Docker-sync
@@ -65,7 +65,7 @@ services:
       NGINX_BACKEND_HOST: php
       NGINX_SERVER_ROOT: /var/www/html/web
     volumes:
-      - codebase:/var/www/html
+      - ./:/var/www/html
 # Options for macOS users (https://docker4drupal.readthedocs.io/en/latest/macos)
 #      - codebase:/var/www/html:cached # User-guided caching
 #      - docker-sync:/var/www/html # Docker-sync
@@ -225,7 +225,7 @@ services:
     image: traefik
     command: -c /dev/null --web --docker --logLevel=INFO
     ports:
-      - '8000:80'
+      - '8888:80'
 #      - '8080:8080' # Dashboard
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
